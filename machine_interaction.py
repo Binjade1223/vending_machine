@@ -14,7 +14,7 @@ products = [[example, 999999], [coke, 20], [orange_juice, 15]]
 
 host = '127.0.0.1' #TODO: check...
 
-""" main function """
+"""main function"""
 def main():
     while True:
         # Hook the SIGINT
@@ -23,7 +23,7 @@ def main():
         # Create an object of the class MFRC522
         MIFAREReader = MFRC522.MFRC522()
         rfidRead()
-        """get = getInputValue()
+"""get = getInputValue()
         pData = productData(get)
         if pData[2] != False: # check whether user choose drinks or not
             card = rfidRead()
