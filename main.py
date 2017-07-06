@@ -24,7 +24,7 @@ def main():
         print ("Below are our drinks:")
         j=0
         for i in products_list:
-            print str(j) + ". " + i[0] + "; Price: " + str(i[1])
+            print str(j) + ". Drinks: " + i[0] + ", Price: " + str(i[1])
             j+=1
 
         product_index = None
