@@ -20,7 +20,7 @@ price_index = 1
 
 def main():
     while True:
-        print ("Welcome to use vendind machine in III.")
+        print ("Welcome to use vending machine in III.")
         print ("Below are our drinks:")
         j=0
         for i in products_list:
@@ -47,6 +47,8 @@ def main():
         if result:
             #TODO: let the machine drop the drinks 
             print("Here you go.")
+            print("")
+            print("")
         else:
             print("Sorry! Try later.")
 
