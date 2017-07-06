@@ -22,7 +22,9 @@ def main():
         # Create an object of the class MFRC522
         MIFAREReader = MFRC522.MFRC522()
         rfidRead()
-"""get = getInputValue()
+        return
+    
+        get = getInputValue()
         pData = productData(get)
         if pData[2] != False: # check whether user choose drinks or not
             card = rfidRead()
@@ -94,6 +96,7 @@ def rfidRead():
     
 def productDropping(number):
     #TODO: give machine the exact number to drop the right product
+    return
         
 """Main function"""       
 if __name__ == '__main__':
