@@ -27,7 +27,7 @@ while True:
 
    rows = [GPIO.input(16),GPIO.input(7),GPIO.input(11),GPIO.input(15)]
    columns = [GPIO.input(12),GPIO.input(18),GPIO.input(13)]
-   r, c = 0
+   r, c = 0, 0
 
 # when user press the btn 如果是真 (玩家按下按鈕)
 
