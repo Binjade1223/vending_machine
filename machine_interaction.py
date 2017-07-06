@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 
 import RPi.GPIO as GPIO
-import MFRC522
+from  MFRC522 import *
 import signal
 import server_connection as sConnect
 
