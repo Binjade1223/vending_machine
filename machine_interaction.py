@@ -7,14 +7,12 @@ import signal
 import server_connection as sConnect
 
 """Some params"""
-continue_reading = True
 
+continue_reading = True
 #informations of products
 products = [[example, 999999], [coke, 20], [orange_juice, 15]]
-
-host = '127.0.0.1' #TODO: check
-
-"""main function"""
+host = '127.0.0.1'
+#TODO: check
 
 def main():
     while True:
