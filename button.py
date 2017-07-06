@@ -15,18 +15,32 @@ GPIO.setup(12, GPIO.IN)
 GPIO.setup(16, GPIO.IN)
 GPIO.setup(18, GPIO.IN)
 
+val_table = [["1", "2", "3"],
+             ["4", "5", "6"],
+             ["7", "8", "9"],
+             ["*", "0", "#"]]
+
 # enter while loop unitl exit 隨著時間迴圈會重複執行，直到強制離開
 while True:
 
-# set up input value as GPIO.11 將P1接頭的11腳位的值設定為inputValue
-   inputValue = [GPIO.input(7),GPIO.input(11),GPIO.input(13),GPIO.input(15),GPIO.input(12),GPIO.input(16),GPIO.input(18)]
+# set up input value > row, column value
+
+   rows = [GPIO.input(16),GPIO.input(7),GPIO.input(11),GPIO.input(15)]
+   columns = [GPIO.input(12),GPIO.input(18),GPIO.input(13)]
+   r, c = 0
 
 # when user press the btn 如果是真 (玩家按下按鈕)
-   if inputValue != False:
 
-# show string on screen   顯示被按下
-      print("Button pressed ")
-      print(inputValue)
-      #if inputValue != [0,0,0,0,1,0,1]:  
-# Set time interval as 0.3 second delay 設定延遲間隔為零點三秒鐘
-      time.sleep(0.3)
+   if True in rows:
+      for i in rows:
+         if i == True:
+            row = r
+         r+=1
+      if True in colums:
+         for j in columnss:
+            if j == True:
+               column = c
+            c+=1
+         print ("Button pressed: "+ val_table[r][c])
+
+   time.sleep(1)
