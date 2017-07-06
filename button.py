@@ -22,11 +22,11 @@ while True:
    inputValue = [GPIO.input(7),GPIO.input(11),GPIO.input(13),GPIO.input(15),GPIO.input(12),GPIO.input(16),GPIO.input(18)]
 
 # when user press the btn 如果是真 (玩家按下按鈕)
-   if inputValue != [0,0,0,0,1,0,1]:
+   if inputValue != False:
 
 # show string on screen   顯示被按下
       print("Button pressed ")
       print(inputValue)
-      if inputValue != [0,0,0,0,1,0,1]:  
+      #if inputValue != [0,0,0,0,1,0,1]:  
 # Set time interval as 0.3 second delay 設定延遲間隔為零點三秒鐘
             time.sleep(0.3)
