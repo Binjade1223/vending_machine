@@ -2,7 +2,12 @@ import json
 import requests
 
 def server_interaction(uid = None, price = None):
+
     host = "http://192.168.50.87:4000"
+    #the bool params below is to decode json pkt
+    true = True
+    false = False
+
     if (uid != None) & (price != None):
 
         # Warning: uid and account binding is better to be deployed on the server
