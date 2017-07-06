@@ -3,4 +3,4 @@
 
 import rfidRead
 
-rfidRead.read()
+print(rfidRead.read())
