@@ -17,7 +17,8 @@ host = '127.0.0.1' #TODO: check...
 """ main function """
 def main():
     while True:
-        get = getInputValue()
+        rfidRead()
+        """get = getInputValue()
         pData = productData(get)
         if pData[2] != False: # check whether user choose drinks or not
             card = rfidRead()
@@ -26,7 +27,7 @@ def main():
             #TODO: productNum = serverConnect[some_index...]
             if resp == True:
                 productDropping(productNum)
-                #TODO: myPrint(tell user the transaction is complete...)
+                #TODO: myPrint(tell user the transaction is complete...)"""
 
 """Some useful functions"""
 
