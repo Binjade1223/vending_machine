@@ -1,11 +1,12 @@
-# import necessary library ¶×¤JRPi.GPIO»Ptime®É¶¡¨ç¦¡®w
+# -*- coding: utf8 -*-
+# import necessary library åŒ¯å…¥RPi.GPIOèˆ‡timeæ™‚é–“å‡½å¼åº«
 import RPi.GPIO as GPIO   
 import time   
 
-# to use Raspberry Pi board pin numbers ¨Ï¥ÎªO¤W©w¸qªº¸}¦ì¸¹½X
+# to use Raspberry Pi board pin numbers ä½¿ç”¨æ¿ä¸Šå®šç¾©çš„è…³ä½è™Ÿç¢¼
 GPIO.setmode(GPIO.BOARD)   
 
-# set up pin 11 as an output  ±NP1±µÀYªº11¸}¦ì³]©w¬°¿é¤J 
+# set up pin 11 as an output  å°‡P1æ¥é ­çš„11è…³ä½è¨­å®šç‚ºè¼¸å…¥ 
 GPIO.setup(7, GPIO.IN)
 GPIO.setup(11, GPIO.IN)
 GPIO.setup(13, GPIO.IN)
@@ -14,18 +15,18 @@ GPIO.setup(12, GPIO.IN)
 GPIO.setup(16, GPIO.IN)
 GPIO.setup(18, GPIO.IN)
 
-# enter while loop unitl exit ÀHµÛ®É¶¡°j°é·|­«½Æ°õ¦æ¡Aª½¨ì±j¨îÂ÷¶}
+# enter while loop unitl exit éš¨è‘—æ™‚é–“è¿´åœˆæœƒé‡è¤‡åŸ·è¡Œï¼Œç›´åˆ°å¼·åˆ¶é›¢é–‹
 while True:
 
-# set up input value as GPIO.11 ±NP1±µÀYªº11¸}¦ìªº­È³]©w¬°inputValue
+# set up input value as GPIO.11 å°‡P1æ¥é ­çš„11è…³ä½çš„å€¼è¨­å®šç‚ºinputValue
    inputValue = [GPIO.input(7),GPIO.input(11),GPIO.input(13),GPIO.input(15),GPIO.input(12),GPIO.input(16),GPIO.input(18)]
 
-# when user press the btn ¦pªG¬O¯u (ª±®a«ö¤U«ö¶s)
+# when user press the btn å¦‚æœæ˜¯çœŸ (ç©å®¶æŒ‰ä¸‹æŒ‰éˆ•)
    if False in inputValue:
 
-# show string on screen   Åã¥Ü³Q«ö¤U
+# show string on screen   é¡¯ç¤ºè¢«æŒ‰ä¸‹
       print("Button pressed ")
       print(inputValue)
       while inputValue ==  False:  
-# Set time interval as 0.3 second delay ³]©w©µ¿ğ¶¡¹j¬°¹sÂI¤T¬íÄÁ
+# Set time interval as 0.3 second delay è¨­å®šå»¶é²é–“éš”ç‚ºé›¶é»ä¸‰ç§’é˜
             time.sleep(0.3)
