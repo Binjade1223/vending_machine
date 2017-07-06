@@ -43,4 +43,4 @@ while True:
             c+=1
          print ("Button pressed: "+ val_table[row][column])
 
-   #time.sleep(1)
+   time.sleep(0.3)
