@@ -4,6 +4,12 @@ import RPi.GPIO as GPIO
 import time
 
 def get_button_input():
+   x = raw_input("Enter what you want... ")
+   return (int(x))
+
+#TODO:
+"""
+def get_button_input():
    # to use Raspberry Pi board pin numbers
    GPIO.setmode(GPIO.BOARD)   
 
@@ -20,8 +26,6 @@ def get_button_input():
                 ["4", "5", "6"],
                 ["7", "8", "9"],
                 ["*", "0", "#"]]
-
-   return 2
    
    # enter while loop unitl exit
    while True:
@@ -47,3 +51,4 @@ def get_button_input():
             print ("Button pressed: "+ val_table[row][column])
 
       time.sleep(0.3)
+"""
