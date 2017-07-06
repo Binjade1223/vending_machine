@@ -27,6 +27,6 @@ while True:
 # show string on screen   顯示被按下
       print("Button pressed ")
       print(inputValue)
-      while inputValue != [0,0,0,0,1,0,1]:  
+      if inputValue != [0,0,0,0,1,0,1]:  
 # Set time interval as 0.3 second delay 設定延遲間隔為零點三秒鐘
             time.sleep(0.3)
