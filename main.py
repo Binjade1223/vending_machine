@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+import time
+
 import button_input
 import rfid_read
 import server_connection as SC
+
 
 def main():
     while True:
@@ -19,8 +22,7 @@ def main():
 
         card_ID = rfid_read.read()
         print [card_ID, product_num]
-
-        
+        time.sleep(1)
 
 
 if __name__ == '__main__':
