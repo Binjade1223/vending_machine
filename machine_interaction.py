@@ -17,6 +17,11 @@ host = '127.0.0.1' #TODO: check...
 """ main function """
 def main():
     while True:
+        # Hook the SIGINT
+        signal.signal(signal.SIGINT, end_read)
+
+        # Create an object of the class MFRC522
+        MIFAREReader = MFRC522.MFRC522()
         rfidRead()
         """get = getInputValue()
         pData = productData(get)
@@ -38,7 +43,8 @@ def myPrint(s, onLCD = None):
 """Step 1. choose product"""
 
 def getInputValue():
-    #defined by buttons on the vendor machine
+    #TODO: defined by buttons on the vendor machine
+    return 
 
 """Step 2. return the product information"""
 
@@ -58,12 +64,6 @@ def end_read(signal,frame):
     print "Ctrl+C captured, ending read."
     continue_reading = False
     GPIO.cleanup()
-
-# Hook the SIGINT
-signal.signal(signal.SIGINT, end_read)
-
-# Create an object of the class MFRC522
-MIFAREReader = MFRC522.MFRC522()
 
 def rfidRead():
     # Welcome message
@@ -88,6 +88,7 @@ def rfidRead():
 
             # UID
             uid = [int(uid[0]), int(uid[1]), int(uid[2]), int(uid[3])]
+            print uid
             return uid
     
 """Step 9. pick product"""
