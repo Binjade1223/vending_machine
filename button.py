@@ -41,6 +41,6 @@ while True:
             if j == True:
                column = c
             c+=1
-         print ("Button pressed: "+ val_table[r][c])
+         print ("Button pressed: "+ val_table[row][column])
 
    time.sleep(1)
