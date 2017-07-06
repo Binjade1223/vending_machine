@@ -36,8 +36,8 @@ while True:
          if i == True:
             row = r
          r+=1
-      if True in colums:
-         for j in columnss:
+      if True in columns:
+         for j in columns:
             if j == True:
                column = c
             c+=1
