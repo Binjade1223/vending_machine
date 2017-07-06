@@ -29,4 +29,4 @@ while True:
       print(inputValue)
       #if inputValue != [0,0,0,0,1,0,1]:  
 # Set time interval as 0.3 second delay 設定延遲間隔為零點三秒鐘
-            time.sleep(0.3)
+      time.sleep(0.3)
