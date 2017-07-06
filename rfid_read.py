@@ -24,6 +24,7 @@ def read():
     # Welcome message
     print "Welcome to the MFRC522 data read example"
     print "Press Ctrl-C to stop."
+    print "Please touch your card to pay"
 
     # This loop keeps checking for chips. If one is near it will get the UID and authenticate
     while continue_reading:
