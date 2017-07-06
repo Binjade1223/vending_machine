@@ -12,9 +12,10 @@ continue_reading = True
 #informations of products
 products = [[example, 999999], [coke, 20], [orange_juice, 15]]
 
-host = '127.0.0.1' #TODO: check...
+host = '127.0.0.1' #TODO: check
 
 """main function"""
+
 def main():
     while True:
         # Hook the SIGINT
