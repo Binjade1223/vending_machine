@@ -21,6 +21,9 @@ price_index = 1
 def main():
     while True:
         print ("Welcome to use vendind machine in III.")
+        print ("Below are our drinks:")
+        for i in products_list:
+            print i
 
         product_index = None
         product_num = None

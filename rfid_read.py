@@ -14,13 +14,15 @@ def end_read(signal,frame):
     continue_reading = False
     GPIO.cleanup()
 
-def read():    
+def read():
+    # Disable Warning
+    GPIO.setwarnings(False)
+    
     # Hook the SIGINT
     signal.signal(signal.SIGINT, end_read)
 
     # Create an object of the class MFRC522
     MIFAREReader = MFRC522.MFRC522()
-
     # Welcome message
     print "Welcome to the MFRC522 data reader"
     print "Press Ctrl-C to stop."

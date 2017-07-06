@@ -30,14 +30,12 @@ def server_interaction(uid = None, price = None):
                 qB_result = qB_data["result"][0]
                 balance = qB_data["result"][1]
                 print "Balance: " + str(balance)
-                print "Thank you for coming."
 
                 if qB_result:
                     logout_data = resp(host, "logout", [USER, login_ID, USER])
                     logout_result = logout_data["result"][0]
 
                     if logout_result:
-                        print "logout success"
                         return True
 
                     else:
