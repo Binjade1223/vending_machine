@@ -22,8 +22,10 @@ def main():
     while True:
         print ("Welcome to use vendind machine in III.")
         print ("Below are our drinks:")
+        j=0
         for i in products_list:
-            print i
+            print str(j) + ". " + i[0] + "; Price: " + i[1]
+            j+=1
 
         product_index = None
         product_num = None
