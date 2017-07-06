@@ -22,7 +22,7 @@ def read():
     MIFAREReader = MFRC522.MFRC522()
 
     # Welcome message
-    print "Welcome to the MFRC522 data read example"
+    print "Welcome to the MFRC522 data reader"
     print "Press Ctrl-C to stop."
     print "Please touch your card to pay"
 

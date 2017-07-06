@@ -6,6 +6,9 @@ import server_connection as SC
 
 def main():
     while True:
+
+        print "Welcome to use vendind machine in III."
+        
         product_num = None
         wait_button_input = True
 
