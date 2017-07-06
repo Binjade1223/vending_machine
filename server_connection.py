@@ -4,9 +4,6 @@ import requests
 def server_interaction(uid = None, price = None):
 
     host = "http://192.168.50.87:4000"
-    #the bool params below is to decode json pkt
-    true = True
-    false = False
 
     if (uid != None) & (price != None):
 
@@ -57,7 +54,12 @@ def server_interaction(uid = None, price = None):
             return False
 
 def resp(host, method, params):
+    #the bool params below is to decode json pkt
+    true = True
+    false = False
+    #actions defined
     actions = ["login", "logout", "transfer", "queryBalance"]
+
     if method in actions:
         payload = {"method": method, "params": params, "jsonrpc": "2.0", "id": 0,}
         r = requests.post(host, json.dumps(payload))
