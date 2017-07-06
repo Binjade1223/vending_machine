@@ -8,9 +8,10 @@ TODO:
 2. 
 """
 def serverConnect(card = None, product = None):
-    if (product != None) && (card != None):
+    if (product != None) & (card != None):
             r = req("", "login", card ) #card information to be modified
             if r != None:
+                return
                 
 
 
