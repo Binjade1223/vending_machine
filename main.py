@@ -21,7 +21,6 @@ price_index = 1
 def main():
     while True:
         print ("Welcome to use vendind machine in III.")
-        print ("Please ")
 
         product_index = None
         product_num = None
@@ -33,10 +32,11 @@ def main():
                 wait_button_input = False
 
         print("Quantity ?")
-
+        quantity = button_input.get_button_input()
+        
         #params needed to be transfered to C_coin server
         card_ID = rfid_read.read()
-        product_price = products_list[product_num][price_index]
+        product_price = products_list[product_index][price_index] * quantity
         
         result = SC.server_interaction(card_ID, product_price)
         if result:

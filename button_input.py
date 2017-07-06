@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 
 def get_button_input():
-   x = raw_input("Enter what you want... ")
+   x = raw_input("Please enter number... ")
    return (int(x))
 
 #TODO:
