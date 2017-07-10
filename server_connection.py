@@ -110,16 +110,16 @@ def server_interaction(uid = None, price = None):
                         return True
 
                     else:
-                        print ("logout fail")
+                        print ("Err: logout fail")
                         return False
                 else:
-                    print ("queryBalance fail")
+                    print ("Err: queryBalance fail")
                     return False
             else:
-                print ("transfer fail")
+                print ("Err: transfer fail")
                 return False
         else:
-            print ("login fail")
+            print ("Err: login fail")
             return False
 
 def resp(host, method, params):

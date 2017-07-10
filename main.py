@@ -19,6 +19,8 @@ products_list = [["iii_ex", 9999999],
 price_index = 1
 
 def main():
+    tb = sc.transaction_buffer("transaction_buffer.json")
+    tb.deleteT()
     time_start = time.time()
     while True:
         print ("Welcome to use vending machine in III.")
@@ -34,15 +36,16 @@ def main():
         wait_button_input = True
 
         while wait_button_input: # customers choose their drinks
-            product_index = button_input.get_button_input()
-            if product_index != None:
-                wait_button_input = False
-
             #while nobody come to buy, buffer list will update 
             time_end = time.time()
             if time_end - time_start > 300:
                 tb.deleteT()
                 time_start = time.time()
+            
+            product_index = button_input.get_button_input()
+            if product_index != None:
+                wait_button_input = False
+            
 
         print("Quantity ?")
         quantity = button_input.get_button_input()
@@ -52,7 +55,6 @@ def main():
         product_price = products_list[product_index][price_index]
 
         #add transaction to buffer
-        tb = sc.transaction_buffer("transaction_buffer.json")
         buffer_balance = tb.queryT(card_ID)
         server_balance = sc.server_balance(card_ID)
         payment = quantity * product_price

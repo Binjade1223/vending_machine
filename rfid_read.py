@@ -10,6 +10,7 @@ continue_reading = True
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
     global continue_reading
+    #if press Ctrl+C, read function will stop
     print "Ctrl+C captured, ending read."
     continue_reading = False
     GPIO.cleanup()
@@ -25,7 +26,6 @@ def read():
     MIFAREReader = MFRC522.MFRC522()
     # Welcome message
     print "Welcome to the MFRC522 data reader"
-    print "Press Ctrl-C to stop."
     print "Please touch your card to pay"
 
     # This loop keeps checking for chips. If one is near it will get the UID and authenticate
