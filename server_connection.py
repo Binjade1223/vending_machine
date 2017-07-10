@@ -82,6 +82,8 @@ def server_balance(uid = None):
                 qB_result = qB_data["result"][0]
                 balance = qB_data["result"][1]
                 return balance
+    else:
+        return False
 
 def server_interaction(uid = None, price = None):
 
@@ -131,6 +133,9 @@ def server_interaction(uid = None, price = None):
             else:
                 print ("Err: login fail")
                 return False
+    else:
+        return False
+        
 
 def resp(host, method, params):
     #the bool params below is to decode json pkt

@@ -55,7 +55,11 @@ def main():
 
         #add transaction to buffer
         buffer_balance = tb.queryT(card_ID)
-        server_balance = sc.server_balance(card_ID)
+        if sc.server_balance(card_ID) != False:
+            server_balance = sc.server_balance(card_ID)
+        else:
+            print "Err: server connection broke"
+            break
         payment = quantity * product_price
         
 
