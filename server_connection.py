@@ -53,7 +53,6 @@ class transaction_buffer:
 def server_status(host):
     try:
         urllib2.urlopen(host, timeout=1)
-        print "Server is OK."
         return True
     except urllib2.URLError as err:
         print "Err: cannot connect to server."
