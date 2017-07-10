@@ -36,16 +36,15 @@ def main():
         wait_button_input = True
 
         while wait_button_input: # customers choose their drinks
+            product_index = button_input.get_button_input()
+            if product_index != None:
+                wait_button_input = False
+
             #while nobody come to buy, buffer list will update 
             time_end = time.time()
             if time_end - time_start > 300:
                 tb.deleteT()
                 time_start = time.time()
-            
-            product_index = button_input.get_button_input()
-            if product_index != None:
-                wait_button_input = False
-            
 
         print("Quantity ?")
         quantity = button_input.get_button_input()
@@ -69,7 +68,11 @@ def main():
             print("********************************************")
             print("")
         else:
+            pre_balance = server_balance - buffer_balance
             print("Insufficient balance")
+            print("Balance: " + str(pre_balance))
+            print("********************************************")
+            print("")
 
         #transfer the data to server in transaction_buffer.json
         tb.transferT()
