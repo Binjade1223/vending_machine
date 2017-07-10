@@ -38,35 +38,39 @@ def main():
             if product_index != None:
                 wait_button_input = False
 
+            #while nobody come to buy, buffer list will update 
+            time_end = time.time()
+            if time_end - time_start > 300:
+                tb.deleteT()
+                time_start = time.time()
+
         print("Quantity ?")
         quantity = button_input.get_button_input()
         
         #params needed to be transfered to C_coin server
         card_ID = rfid_read.read()
-        product_price = products_list[product_index][price_index] * quantity
+        product_price = products_list[product_index][price_index]
 
         #add transaction to buffer
         tb = sc.transaction_buffer("transaction_buffer.json")
         buffer_balance = tb.queryT(card_ID)
         server_balance = sc.server_balance(card_ID)
         payment = quantity * product_price
+        
 
         if server_balance - buffer_balance > payment: #check whether the user has enough money or not
             payload = {"price": product_price, "uid": card_ID, "sent":False, "quantity": quantity }
             tb.addT(payload)
+            new_balance = server_balance - buffer_balance - payment
             print("Here you go.")
-            print("")
+            print("Balance: " + str(new_balance))
+            print("********************************************")
             print("")
         else:
             print("Insufficient balance")
 
         #transfer the data to server in transaction_buffer.json
         tb.transferT()
-        
-        time_end = time.time()
-        if time_end - time_start > 300:
-            tb.deleteT()
-            time_start = time.time()
 
         time.sleep(3)
 
