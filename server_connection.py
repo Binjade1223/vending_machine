@@ -1,6 +1,47 @@
 import json
 import requests
 
+
+class transaction_buffer:
+
+    def __init__(self, file_name):
+        self.file_name = file_name
+        self.data = open(file_name, "r")
+        self.decode_data = json.load(self.data)
+    
+    def addT(self, new_data): # add new transaction into buffer
+        obj = self.decode_data
+        obj.append(new_data)
+        with open(self.file_name, 'w') as data_file:
+            json.dump(obj, data_file)
+            
+    def modifyT(self, server_resp, index): # modify "sent" status by resp from server 
+        obj = self.decode_data
+        if server_resp == True:
+            obj[index]["sent"] = True
+        with open(self.file_name, 'w') as data_file:
+            json.dump(obj, data_file)
+
+    def deleteT(self): # delete transactions which has been confirmed by server
+        obj = self.decode_data
+        i = 0
+        while i < len(obj):
+            if obj[i]["sent"] == True:
+                obj.pop(i)
+            else:
+                i += 1
+        with open(self.file_name, 'w') as data_file:
+            json.dump(obj, data_file)
+            
+    def queryT(self, uid): # query user's transaction (which hasn't been sent to server) in buffer
+        obj = self.decode_data
+        unsent_balance = 0
+        for i in xrange(len(obj)):
+            if (obj[i]["uid"] == uid) & (obj[i]["sent"] == False):
+                    unsent_balance += obj[i]["price"]*obj[i]["quantity"]
+        return unsent_balance
+
+
 def server_interaction(uid = None, price = None):
 
     host = "http://192.168.50.87:4000"
