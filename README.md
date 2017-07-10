@@ -8,6 +8,7 @@ intern project for iii.
 (1) apt-get
 
 sudo apt-get update
+
 sudo apt-get upgrade
 
 (2) update kernel
