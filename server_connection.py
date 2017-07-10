@@ -44,7 +44,8 @@ class transaction_buffer:
     def transferT(self):
         obj = self.decode_data
         for i in xrange(len(obj)):
-            if (obj[i]["uid"] == uid) & (obj[i]["sent"] == False):
+            if (obj[i]["sent"] == False):
+                uid = obj[i]["uid"]
                 payment = obj[i]["price"] * obj[i]["quantity"]
                 result = server_interaction(uid, payment)
                 self.modifyT(result, i)
