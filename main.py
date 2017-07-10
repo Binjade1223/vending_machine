@@ -5,7 +5,7 @@ import time
 import button_input
 import rfid_read
 import get_product
-import server_connection as SC
+import server_connection as sc
 
 # Warning: products_list is better to be deployed on the server
 products_list = [["iii_ex", 9999999],
@@ -19,9 +19,11 @@ products_list = [["iii_ex", 9999999],
 price_index = 1
 
 def main():
+    time_start = time.time()
     while True:
         print ("Welcome to use vending machine in III.")
         print ("Below are our drinks:")
+
         j=0
         for i in products_list:
             print str(j) + ". Drinks: " + i[0] + ", Price: " + str(i[1])
@@ -42,18 +44,31 @@ def main():
         #params needed to be transfered to C_coin server
         card_ID = rfid_read.read()
         product_price = products_list[product_index][price_index] * quantity
-        
-        result = SC.server_interaction(card_ID, product_price)
-        if result:
-            #TODO: let the machine drop the drinks 
+
+        #add transaction to buffer
+        tb = sc.transaction_buffer("transaction_buffer.json")
+        buffer_balance = tb.queryT(card_ID)
+        server_balance = sc.server_balance(card_ID)
+        payment = quantity * product_price
+
+        if server_balance - buffer_balance > payment: #check whether the user has enough money or not
+            payload = {"price": product_price, "uid": card_ID, "sent":False, "quantity": quantity }
+            tb.addT(payload)
             print("Here you go.")
             print("")
             print("")
         else:
-            print("Sorry! Try later.")
+            print("Insufficient balance")
 
-        time.sleep(2)
+        #transfer the data to server in transaction_buffer.json
+        tb.transferT()
+        
+        time_end = time.time()
+        if time_end - time_start > 300:
+            tb.deleteT()
+            time_start = time.time()
 
+        time.sleep(3)
 
 if __name__ == '__main__':
     main()
