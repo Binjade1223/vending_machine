@@ -64,13 +64,13 @@ def server_balance(uid = None):
         if (uid != None):
             # Warning: uid and account binding is better to be deployed on the server
             if uid==[58,249,134,171]:
-                USER = "test3333@iii.org"
+                USER = "test0000@iii.org"
                 PASSWORD = "lablab"
-                MERCHANT = "test2222@iii.org"
+                MERCHANT = "test1111@iii.org"
             elif uid==[245,82,168,43]:
-                USER = "test2222@iii.org"
+                USER = "test1111@iii.org"
                 PASSWORD ="lablab"
-                MERCHANT = "test3333@iii.org"
+                MERCHANT = "test0000@iii.org"
 
             login_data = resp(host, "login", [USER, PASSWORD])
             login_result = login_data["result"][0]
@@ -94,13 +94,13 @@ def server_interaction(uid = None, price = None):
 
             # Warning: uid and account binding is better to be deployed on the server
             if uid==[58,249,134,171]:
-                USER = "test3333@iii.org"
+                USER = "test0000@iii.org"
                 PASSWORD = "lablab"
-                MERCHANT = "test2222@iii.org"
+                MERCHANT = "test1111@iii.org"
             elif uid==[245,82,168,43]:
-                USER = "test2222@iii.org"
+                USER = "test1111@iii.org"
                 PASSWORD ="lablab"
-                MERCHANT = "test3333@iii.org"
+                MERCHANT = "test0000@iii.org"
 
             login_data = resp(host, "login", [USER, PASSWORD])
             login_result = login_data["result"][0]
@@ -154,3 +154,5 @@ def resp(host, method, params):
     else:
         mInteract.myPrint("Err: Method not defined", "Request error")
         return
+
+server_balance([58,249,134,171])
