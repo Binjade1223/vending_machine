@@ -80,6 +80,8 @@ def server_balance(uid = None):
                 qB_data = resp(host, "queryBalance", [USER, login_ID, USER])
                 qB_result = qB_data["result"][0]
                 balance = qB_data["result"][1]
+                if type(balance) == str:
+                    return "Error: " + balance
                 return balance
     else:
         return False

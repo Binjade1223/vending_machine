@@ -61,22 +61,25 @@ def main():
             print "Err: server connection broke"
             break
         payment = quantity * product_price
-        
 
-        if server_balance - buffer_balance > payment: #check whether the user has enough money or not
-            payload = {"price": product_price, "uid": card_ID, "sent":False, "quantity": quantity }
-            tb.addT(payload)
-            new_balance = server_balance - buffer_balance - payment
-            print("Here you go.")
-            print("Balance: " + str(new_balance))
-            print("********************************************")
-            print("")
+        if type(server_balance) == str:
+            print server_balance
+            print "Please try later"
         else:
-            pre_balance = server_balance - buffer_balance
-            print("Insufficient balance")
-            print("Balance: " + str(pre_balance))
-            print("********************************************")
-            print("")
+            if server_balance - buffer_balance > payment: #check whether the user has enough money or not
+                payload = {"price": product_price, "uid": card_ID, "sent":False, "quantity": quantity }
+                tb.addT(payload)
+                new_balance = server_balance - buffer_balance - payment
+                print("Here you go.")
+                print("Balance: " + str(new_balance))
+                print("********************************************")
+                print("")
+            else:
+                pre_balance = server_balance - buffer_balance
+                print("Insufficient balance")
+                print("Balance: " + str(pre_balance))
+                print("********************************************")
+                print("")
 
         #transfer the data to server in transaction_buffer.json
         tb.transferT()
