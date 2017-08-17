@@ -1,6 +1,7 @@
 import serial
 
-ser=serial.Serial("COM8" , 115200)
+def assign_serial(ser_name): # ser is the name(str) of the serial 
+    return serial.Serial(ser_name , 115200)
 
 def hex2str(data):
     data = repr(data)
@@ -11,9 +12,12 @@ def hex2str(data):
     return data
 
 def recv_pkt(ser):
+    reading = True
+    """
     if ser.isOpen():
         print "open"
         reading = True
+    """
     pkt = []
     a5_num = 0
     while reading:
@@ -30,8 +34,7 @@ def recv_pkt(ser):
                 pkt.append(hex2str(data))
         if a5_num == 2:
             reading = False
-    ser.close()
-    
+            
     return pkt
 
 def pkt_append(pkt, data):
@@ -59,9 +62,12 @@ def assign_param(cmd, channel):
     else:
         print "Warning: Command not found."
 
-def check_cum_XOR(sn, cmd, param): # a little bit complex... (but confirmed)
+def check_sum_XOR(sn, cmd, param): # a little bit complex... (but confirmed)
     ans = []
-    elements = [sn, cmd, param]
+    if type(param) == list:
+        elements = [sn, cmd] + param
+    else:
+        elements = [sn, cmd, param]
     carry = 0
     for i in xrange(2):
         a = 0
@@ -79,7 +85,7 @@ def check_cum_XOR(sn, cmd, param): # a little bit complex... (but confirmed)
 def check_sum(sn, cmd, param):
     if param == None:
         param = 0
-    return check_cum_XOR(sn, cmd, param)
+    return check_sum_XOR(sn, cmd, param)
 
 def send_pkt(ser, sn, cmd, channel=None):
     # sn: 'Serial Number'; cmd: 'Command'
@@ -97,7 +103,6 @@ def send_pkt(ser, sn, cmd, channel=None):
     packet.append(0xa5) # add Interval Char (0xa5) ---END---
     
     ser.write(packet) # send
-    ser.close()
 
 def modify_recv_pkt(data): # input: a list from recv_pkt
     data, new_data = data[1:-1], [] # cut head and tail
@@ -106,6 +111,7 @@ def modify_recv_pkt(data): # input: a list from recv_pkt
         if i == 'af':
             if be_aware:
                 new_data.append(i)
+                be_aware = False
             else:
                 be_aware = True
         else:
@@ -116,10 +122,38 @@ def modify_recv_pkt(data): # input: a list from recv_pkt
     Checksum = new_data[-1]
     return [SN, CMD, Parameter, Checksum]
 
-def check_recv_pkt(send_sn, recv_sn):
-    # TODO: check whether the pkt is correct or not
-    pass
+def decode_recv_pkt(send_CMD ,data): # input: a list from modify_recv_pkt
+    recv_CMD, Parameter = data[1], data[2]
 
-def decode_recv_pkt(data): # input: a list from modify_recv_pkt
-    # TODO: decode the meaning of the pkt(from VMC)
-    pass
+    if send_CMD == '21': # check channel status
+        if recv_CMD == 'aa':
+            return [True, "OK"]
+        elif recv_CMD == 'ff':
+            return [False, "CMD Error"]
+        elif recv_CMD == 'dd':
+            return [False, "Can not sell"]
+        
+    elif send_CMD == '22': # push the drinks in the  channel
+        if recv_CMD == 'aa':
+            return [True, "OK"]
+        elif recv_CMD == 'ff':
+            return [False, "CMD Error"]
+        
+    elif send_CMD == '01': # polling return type: [status_index, status]
+        if recv_CMD == '01':
+            return [1 ,"Normal Operation"]
+        elif recv_CMD == '10':
+            return [2 ,"Dealing..."]
+        elif recv_CMD == '11':
+            return [3 ,"Cancel the Deal"]
+        elif recv_CMD == '20':
+            return [4 ,"Door is open"]
+        elif recv_CMD == 'ff':
+            return [5 ,"System Error"]
+                    
+    else:
+        return [False, "send_CMD not defined"]
+
+
+def serial_close(ser):
+    ser.close()

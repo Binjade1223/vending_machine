@@ -1,54 +1,52 @@
 # -*- coding: utf8 -*-
-# import necessary library
-import RPi.GPIO as GPIO   
-import time
 
-def get_button_input():
-   x = raw_input("Please enter number... ")
-   return (int(x))
+import Tkinter
+import tkMessageBox
 
-#TODO:
-"""
-def get_button_input():
-   # to use Raspberry Pi board pin numbers
-   GPIO.setmode(GPIO.BOARD)   
+top = Tkinter.Tk()
 
-   # set up pins as an input 
-   GPIO.setup(7, GPIO.IN)
-   GPIO.setup(11, GPIO.IN)
-   GPIO.setup(13, GPIO.IN)
-   GPIO.setup(15, GPIO.IN)
-   GPIO.setup(12, GPIO.IN)
-   GPIO.setup(16, GPIO.IN)
-   GPIO.setup(18, GPIO.IN)
+def helloCallBack():
+   tkMessageBox.showinfo( "Hello Python", "Hello World")
 
-   val_table = [["1", "2", "3"],
-                ["4", "5", "6"],
-                ["7", "8", "9"],
-                ["*", "0", "#"]]
-   
-   # enter while loop unitl exit
-   while True:
+B = Tkinter.Button(top, text ="Hello", command = helloCallBack)
 
-   # set up input value > row, column value
+B.pack()
+top.mainloop()
 
-      rows = [GPIO.input(16),GPIO.input(7),GPIO.input(11),GPIO.input(15)]
-      columns = [GPIO.input(12),GPIO.input(18),GPIO.input(13)]
-      r, c = 0, 0
 
-   # when user press the botton
+def GUI():
+   win = tk.Tk()
+   win.title("Vending Machine")
 
-      if True in rows:
-         for i in rows:
-            if i == True:
-               row = r
-            r+=1
-         if True in columns:
-            for j in columns:
-               if j == True:
-                  column = c
-               c+=1
-            print ("Button pressed: "+ val_table[row][column])
+   # some_products_data
+   products_list = [["iii_ex", 9999999],
+                    ["Coke", 15],
+                    ["Milk", 30],
+                    ["Soymilk", 20],
+                    ["Orange juice", 25],
+                    ["Apple juice", 25],
+                    ["Grape juice", 25]
+                    ]
 
-      time.sleep(0.3)
-"""
+   # label
+   label_1 = tk.Label(win, text="Welcome to use vending machine in III.")
+   label_2 = tk.Label(win, text="Below are our drinks:")
+   label_3 = tk.Label(win, text="")
+   label_1.pack() # display the label
+   label_2.pack()
+   label_3.pack()
+
+   # button
+
+   # product_button
+   button_list = []
+   for i in xrange(len(products_list)):
+       product_price_str = str(products_list[i][1])
+       button = tk.Button(win, text = str(i) + ". Product: " + products_list[i][0] +
+                          "; Price: " + product_price_str, command = get_button_input(i))
+       button_list.append(button)
+
+   for i in button_list:
+       i.pack()
+
+   win.mainloop()

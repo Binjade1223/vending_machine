@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import RPi.GPIO as GPIO
-import MFRC522
+#import RPi.GPIO as GPIO
+#import MFRC522
 import signal
 
 continue_reading = True
@@ -16,6 +16,8 @@ def end_read(signal,frame):
     GPIO.cleanup()
 
 def read():
+    return [58,249,134,171]
+    """
     # Disable Warning
     GPIO.setwarnings(False)
     
@@ -47,3 +49,4 @@ def read():
             # Print UID
             print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
             return [ uid[0], uid[1], uid[2], uid[3] ]
+    """
