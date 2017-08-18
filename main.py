@@ -27,7 +27,7 @@ def main():
         for i in xrange(len(products_list)):
             print str(i) + ". " + products_list[i][0] + "; $: " + str(products_list[i][1])
         index = int(raw_input("Please choose: "))
-        ser = rs.assign_serial("COM7")
+        ser = rs.assign_serial("COM2")
         rs.send_pkt(ser, 1, 33) # 33 means 0x21
         if decode_pkt('21',rs.recv_pkt(ser))[0]:
             print "Please touch your card"

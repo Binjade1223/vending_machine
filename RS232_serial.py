@@ -1,9 +1,9 @@
 import serial
 
-def assign_serial(ser_name): # ser is the name(str) of the serial 
+def assign_serial(ser_name): # ser_name is the name(type: str) of the serial 
     return serial.Serial(ser_name , 115200)
 
-def hex2str(data):
+def hex2str(data): # convert hex to 2 char str
     data = repr(data)
     if 'x' not in data:
         data = data[1].encode("hex")
@@ -11,7 +11,7 @@ def hex2str(data):
         data = data[3:5]
     return data
 
-def recv_pkt(ser):
+def recv_pkt(ser): # recv packets and convert them into ['a5',...,'a5'] (type :list)
     reading = True
     """
     if ser.isOpen():
@@ -131,7 +131,7 @@ def decode_recv_pkt(send_CMD ,data): # input: a list from modify_recv_pkt
         elif recv_CMD == 'ff':
             return [False, "CMD Error"]
         elif recv_CMD == 'dd':
-            return [False, "Can not sell"]
+            return [False, "Can not sell (check the channel)"]
         
     elif send_CMD == '22': # push the drinks in the  channel
         if recv_CMD == 'aa':
