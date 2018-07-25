@@ -1,5 +1,5 @@
 # vending_machine
-intern project for iii.
+intern project in iii.
 
 --- Environment setup ---
 
