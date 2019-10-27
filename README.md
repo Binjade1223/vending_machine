@@ -48,7 +48,7 @@ sudo python setup.py install
 
 cd ..
 
-git clone https://github.com/Binjade1223/vending_machine
+git clone https://github.com/Vimalakirti/vending_machine
 
 
 --- Application ---
